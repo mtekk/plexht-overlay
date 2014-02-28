@@ -86,7 +86,7 @@ media-libs/tiff
 >=media-libs/sdl-image-1.2.10[gif,jpeg,png]
 >=net-dns/avahi-0.6.30-r3[dbus,gtk,python]
 net-fs/samba
-<=net-libs/libmicrohttpd-0.9.21
+>=net-libs/libmicrohttpd-0.9.21
 net-libs/libssh
 net-misc/curl
 sys-apps/lsb-release
@@ -95,7 +95,7 @@ sys-apps/dbus
 virtual/jdk
 x11-proto/xineramaproto
 x11-apps/xdpyinfo
-x11-libs/qt-core[qt3support]
+dev-qt/qtcore[qt3support]
 x11-libs/libvdpau
 x11-libs/libva[opengl]
 "
@@ -106,7 +106,7 @@ DEPEND="${RDEPEND}
 src_configure() {
 #	./bootstrap || die "Could not bootstrap"
 #	./configure || die "Could not configure"
-	cmake . || die "Could not run cmake"
+	cmake -DUSE_INTERNAL_FFMPEG:STRING=NO -DCMAKE_BUILD_TYPE=Release -DENABLE_AUTOUPDATE=off -DCMAKE_INSTALL_PREFIX=/opt/plexhometheater . || die "Could not run cmake"
 }
 
 #src_compile()
